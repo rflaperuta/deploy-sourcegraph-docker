@@ -70,8 +70,8 @@ services:
   sourcegraph-frontend-0:
     container_name: sourcegraph-frontend-0
     image: 'index.docker.io/sourcegraph/frontend:insiders@sha256:542e5155df86d5c9655980abf2c0222fe0cdcd1895f5aa93451cef9835b18c7a'
-    cpus: 4
-    mem_limit: '8g'
+    cpus: 2
+    mem_limit: '4g'
     environment:
       - DEPLOY_TYPE=docker-compose
       - GOMAXPROCS=12
@@ -143,8 +143,8 @@ services:
   gitserver-0:
     container_name: gitserver-0
     image: 'index.docker.io/sourcegraph/gitserver:insiders@sha256:172863bb7c3f013114dcf40f46f1622b7701ed18eadbcaaaafb78d047dcf2742'
-    cpus: 4
-    mem_limit: '8g'
+    cpus: 8
+    mem_limit: '16g'
     environment:
       - GOMAXPROCS=4
       - 'SRC_FRONTEND_INTERNAL=sourcegraph-frontend-internal:3090'
@@ -187,7 +187,7 @@ services:
     container_name: zoekt-webserver-0
     image: 'index.docker.io/sourcegraph/indexed-searcher:insiders@sha256:76d7e8a7453caed03412064d2f8e40dd49b9df958edd846e5a91c514b840803e'
     cpus: 8
-    mem_limit: '50g'
+    mem_limit: '16g'
     environment:
       - GOMAXPROCS=8
       - 'HOSTNAME=zoekt-webserver-0:6070'
@@ -213,7 +213,7 @@ services:
     container_name: searcher-0
     image: 'index.docker.io/sourcegraph/searcher:insiders@sha256:33050fe0c71b66aa33b9c5337de012a9684eabbf990a9d4bea2e720a326a8382'
     cpus: 2
-    mem_limit: '2g'
+    mem_limit: '4g'
     environment:
       - GOMAXPROCS=2
       - 'SRC_FRONTEND_INTERNAL=sourcegraph-frontend-internal:3090'
